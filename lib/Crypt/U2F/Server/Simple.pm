@@ -45,8 +45,6 @@ sub new {
         $refCount++;
     }
 
-    print "Test fail: ", Crypt::U2F::Server::u2fclib_getError(), "\n";
-
     my $ctx = Crypt::U2F::Server::u2fclib_get_context();
     if(!defined($ctx) || !$ctx) {
         $errstr = Crypt::U2F::Server::u2fclib_getError();
@@ -202,13 +200,11 @@ sub setChallenge {
 sub authenticationChallenge {
     my ($self) = @_;
 
-    print "BLI\n";
     if(!$self->setKeyHandle || !$self->setPublicKey) {
         return;
     }
 
     my $rc = Crypt::U2F::Server::u2fclib_calcAuthenticationChallenge($self->{ctx});
-    print "BLUB\n";
     if(!defined($rc) || !length($rc)) {
         $errstr = Crypt::U2F::Server::u2fclib_getError();
         return;
