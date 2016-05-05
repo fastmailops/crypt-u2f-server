@@ -1,6 +1,6 @@
 package Crypt::U2F::Server::Simple;
 
-use 5.018001;
+use 5.008008;
 use strict;
 use warnings;
 use Carp;
